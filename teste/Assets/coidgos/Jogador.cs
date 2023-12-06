@@ -30,6 +30,10 @@ public class Jogador : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         
+        if(transform.position.y <= -5 ){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
         Vector2 direcao = new Vector2(x, 0);
         rb.velocity = direcao * velocidade;
         if(Input.GetKeyDown(KeyCode.Space) && noChao){
@@ -38,6 +42,7 @@ public class Jogador : MonoBehaviour
 
             rb.AddForce(Vector2.up * forcaPulo, ForceMode2D.Force);
             noChao = false;
+            
 
         }
     }
