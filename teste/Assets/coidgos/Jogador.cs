@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,8 +13,8 @@ public class Jogador : MonoBehaviour
         public bool noChao;
         public int forcaPulo = 7;
         
-        private void OnCollisionEnter(Collision collision){
-            if (!noChao && collision.gameObject.tag == "chão" ){
+        private void OnCollisionEnter2D(Collision2D collision){
+            if (!noChao && collision.gameObject.tag == "Chão" ){
                 noChao = true;
             }
         }
@@ -26,11 +27,11 @@ public class Jogador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
         
-        Vector2 direcao = new Vector2(x, v);
-        rb.velocity = direcao.normalized * velocidade;
+        Vector2 direcao = new Vector2(x, 0);
+        rb.velocity = direcao * velocidade;
         if(Input.GetKeyDown(KeyCode.Space) && noChao){
 
             
